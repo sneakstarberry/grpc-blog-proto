@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto;proto";
+
+service ProductInfo {
+  rpc addPost(AddPostRequest) returns (AddPostResponse);
+  rpc getPost(GetPostRequest) returns (GetPostResponse);
+  rpc getPostList(GetPostListRequest) returns (GetPostListResponse);
+  rpc setPost(SetPostRequest) returns (SetPostResponse);
+  rpc deletePost(DeletePostRequest) returns (DeletePostResponse);
+}
+
+message Post {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+}
+// getPost
+message GetPostRequest { string post_id = 1; }
+message GetPostResponse { Post post_message = 1; }
+// getPostList
+message GetPostListRequest {}
+message GetPostListResponse { repeated Post post_messages = 1; }
+// addPost
+message AddPostRequest { Post post_message = 1; }
+message AddPostResponse { string post_id = 1; }
+// setPost
+message SetPostRequest { Post post_message = 1; }
+message SetPostResponse { Post post_message = 1; }
+// deletePost
+message DeletePostRequest { string post_id = 1; }
+message DeletePostResponse { string message = 1; }
