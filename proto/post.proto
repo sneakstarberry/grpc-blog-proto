@@ -4,7 +4,7 @@ package proto;
 
 option go_package = "proto;proto";
 
-service ProductInfo {
+service Post {
   rpc addPost(AddPostRequest) returns (AddPostResponse);
   rpc getPost(GetPostRequest) returns (GetPostResponse);
   rpc getPostList(GetPostListRequest) returns (GetPostListResponse);
@@ -12,7 +12,7 @@ service ProductInfo {
   rpc deletePost(DeletePostRequest) returns (DeletePostResponse);
 }
 
-message Post {
+message PostMessage {
   string id = 1;
   string name = 2;
   string description = 3;
@@ -20,16 +20,16 @@ message Post {
 }
 // getPost
 message GetPostRequest { string post_id = 1; }
-message GetPostResponse { Post post_message = 1; }
+message GetPostResponse { PostMessage post_message = 1; }
 // getPostList
 message GetPostListRequest {}
-message GetPostListResponse { repeated Post post_messages = 1; }
+message GetPostListResponse { repeated PostMessage post_messages = 1; }
 // addPost
-message AddPostRequest { Post post_message = 1; }
+message AddPostRequest { PostMessage post_message = 1; }
 message AddPostResponse { string post_id = 1; }
 // setPost
-message SetPostRequest { Post post_message = 1; }
-message SetPostResponse { Post post_message = 1; }
+message SetPostRequest { PostMessage post_message = 1; }
+message SetPostResponse { PostMessage post_message = 1; }
 // deletePost
 message DeletePostRequest { string post_id = 1; }
 message DeletePostResponse { string message = 1; }
